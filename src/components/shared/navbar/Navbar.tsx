@@ -1,23 +1,22 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link'; // 💡 EDUCATIONAL INSIGHT: Next.js Native routing component imported here
 import { 
   Home, 
   User, 
   Briefcase, 
   Code, 
-  Mail, 
-  Sun, 
-  Moon, 
+  Mail,  
   Menu, 
   X, 
   Send,
-  Cpu
-} from 'lucide-react';
+  Cpu,
+  UserStar
+} from 'lucide-react'; // 💡 Removed conflicting 'Link' icon from Lucide
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
 
   // Handle glassmorphism effect on scroll
   useEffect(() => {
@@ -34,6 +33,7 @@ const Navbar = () => {
     { name: 'Services', icon: <Briefcase size={18} />, href: '#' },
     { name: 'Projects', icon: <Code size={18} />, href: '#' },
     { name: 'Contact', icon: <Mail size={18} />, href: '#' },
+    { name: 'Panel', icon: <UserStar size={18} />, href: '/login' },
   ];
 
   return (
@@ -73,26 +73,19 @@ const Navbar = () => {
           {/* Center: Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 bg-slate-900/20 px-6 py-2 rounded-full border border-white/5 backdrop-blur-sm">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
                 href={item.href}
-                className="flex items-center gap-1.5 text-sm font-semibold text-slate-300 hover:text-indigo-400 transition-colors"
+                className="flex items-center gap-1.5 text-sm font-semibold text-slate-300 hover:text-indigo-400 transition-colors group"
               >
                 <span className="text-indigo-400/80 group-hover:text-indigo-400">{item.icon}</span>
                 <span>{item.name}</span>
-              </a>
+              </Link>
             ))}
           </div>
 
           {/* Right Side: Actions */}
           <div className="hidden md:flex items-center gap-4">
-            <button 
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2.5 rounded-full bg-slate-900/50 border border-white/5 text-slate-300 hover:text-white transition-colors"
-            >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-            
             <button className="flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-md shadow-indigo-600/20 active:scale-95">
               <Send size={16} />
               <span>Hire Me</span>
@@ -101,12 +94,6 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
-            <button 
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 text-slate-300 hover:text-white"
-            >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
             <button 
               onClick={() => setIsOpen(!isOpen)}
               className="text-white p-2 hover:bg-white/5 rounded-lg transition-colors"
@@ -123,15 +110,15 @@ const Navbar = () => {
       }`}>
         <div className="px-4 pt-2 pb-6 space-y-1">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
               className="flex items-center gap-4 px-4 py-3.5 text-base font-medium text-slate-300 border-b border-white/5 hover:bg-white/5 rounded-xl transition-all"
               onClick={() => setIsOpen(false)}
             >
               <span className="text-indigo-400">{item.icon}</span>
-              {item.name}
-            </a>
+              <span>{item.name}</span>
+            </Link>
           ))}
           <div className="pt-4 px-1">
             <button className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-xl font-bold text-sm shadow-lg shadow-indigo-600/20">
