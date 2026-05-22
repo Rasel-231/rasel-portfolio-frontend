@@ -1,7 +1,8 @@
-"use client";
+/* eslint-disable react-hooks/static-components */
+'use client'
 import React from 'react';
 
-// SVG Logo Components
+// SVG Logo Components (as provided in the user request)
 const ReactLogo = () => (
   <svg viewBox="175.7 78 490.6 436.9" xmlns="http://www.w3.org/2000/svg">
     <g fill="currentColor">
@@ -55,87 +56,37 @@ const SvelteLogo = () => (
   </svg>
 );
 const VueLogo = () => (
-  <svg viewBox="0 0 261.76 226.69" xmlns="http://www.w3.org/2000/svg">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.76 226.69">
     <path fill="currentColor" d="m161.096.001-30.224 52.35L100.647.002H-.005L130.872 226.69 261.749 0z" />
     <path fill="#41B883" d="m161.096.001-30.224 52.35L100.647.002H52.346l78.526 136.01L209.398.001z" />
   </svg>
 );
 
-const logos1 = [
-  { id: 'l1-1', component: <ReactLogo /> },
-  { id: 'l1-2', component: <AstroLogo /> },
-  { id: 'l1-3', component: <TailwindLogo /> },
-  { id: 'l1-4', component: <VueLogo /> },
-  { id: 'l1-5', component: <NextjsLogo /> },
-  { id: 'l1-6', component: <RemixLogo /> },
-  { id: 'l1-7', component: <JSLogo /> },
-  { id: 'l1-8', component: <TSLogo /> },
-  { id: 'l1-9', component: <SvelteLogo /> },
+
+const logos2 = [
+  { id: 1, component: <ReactLogo /> },
+  { id: 2, component: <AstroLogo /> },
+  { id: 3, component: <TailwindLogo /> },
+  { id: 4, component: <VueLogo /> },
+  { id: 5, component: <NextjsLogo /> },
+  { id: 6, component: <RemixLogo /> },
+  { id: 7, component: <JSLogo /> },
+  { id: 8, component: <TSLogo /> },
+  { id: 9, component: <SvelteLogo /> },
 ];
 
 
-interface MarqueeRowProps {
-  logos: typeof logos1;
-  direction?: 'normal' | 'reverse';
-}
 
-const MarqueeRow = ({ logos, direction = 'normal' }: MarqueeRowProps) => {
-  const numItems = logos.length;
-  const speed = '32s'; // Multi-layer movement er jonno stroke speed subtle kora holo
-  const itemWidth = '120px';
-  const itemGap = '28px';
 
-  return (
-    <div
-      className="max-w-full overflow-hidden relative"
-      style={{
-        '--speed': speed,
-        '--numItems': numItems,
-        '--item-width': itemWidth,
-        '--item-gap': itemGap,
-        '--direction': direction,
-        maskImage: 'linear-gradient(to right, transparent, black 4rem, black calc(100% - 4rem), transparent)',
-        WebkitMaskImage: 'linear-gradient(to right, transparent, black 4rem, black calc(100% - 4rem), transparent)',
-      } as React.CSSProperties}
-    >
-      <div
-        className="w-max flex"
-        style={{
-          animation: `marquee-move var(--speed) linear infinite var(--direction)`,
-        }}
-      >
-        {/* Infinite Loop Structure Map */}
-        {[...logos, ...logos, ...logos].map((logo, index) => (
-          <div
-            key={`${logo.id}-${index}`}
-            className="flex-shrink-0 flex justify-center items-center bg-slate-900/40 border border-white/5 backdrop-blur-md rounded-2xl text-slate-400 hover:text-indigo-400 hover:border-indigo-500/20 hover:scale-[1.03] hover:shadow-[0_0_15px_rgba(99,102,241,0.1)] transition-all duration-300"
-            style={{
-              width: 'var(--item-width)',
-              aspectRatio: '1 / 1.15',
-              marginRight: 'var(--item-gap)',
-            } as React.CSSProperties}
-          >
-            <div className="w-1/2 h-auto flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-              {logo.component}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default function Marquee() {
-  // Global stylesheet component creation on load
+function Logomarquee() {
+  // We need to inject the keyframes animation into the document's head
+  // because Tailwind CSS doesn't directly support the 'cqw' unit.
   React.useEffect(() => {
     const styleSheet = document.createElement("style");
     styleSheet.innerText = `
       @keyframes marquee-move {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(calc(-1 * (var(--item-width) * var(--numItems) + var(--item-gap) * var(--numItems))));
+        to {
+          transform: translateX(calc(-100cqw - var(--item-gap)));
         }
       }
     `;
@@ -145,29 +96,59 @@ export default function Marquee() {
     };
   }, []);
 
-  return (
-    <div className="w-full relative flex items-center justify-center overflow-hidden py-16 ">
-      
-      {/* 🌌 Synchronized Galactic Background Wrapper */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Particle Vector Stars */}
-        <div 
-          className="absolute inset-0 opacity-30 bg-repeat bg-center" 
-          style={{ 
-            backgroundImage: 'radial-gradient(1px 1px at 25px 40px, #fff, rgba(0,0,0,0)), radial-gradient(1px 1px at 75px 110px, #fff, rgba(0,0,0,0)), radial-gradient(1.5px 1.5px at 140px 180px, #fff, rgba(0,0,0,0))', 
-            backgroundSize: '250px 250px' 
-          }}
-        />
-        {/* Soft Ambient Vector Nebula Blurs */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[550px] h-[250px] bg-indigo-500/5 blur-[100px] rounded-full" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[450px] h-[220px] bg-purple-500/5 blur-[110px] rounded-full" />
-      </div>
+  const Marquee = ({ logos, direction = 'forwards' }: { logos: typeof logos2; direction?: string }) => {
+    const numItems = logos.length;
+    const speed = '15s';
+    const itemWidth = '120px';
+    const itemGap = '25px';
 
-      <div className="w-full max-w-6xl flex flex-col gap-y-7 px-4 relative z-10">
-        {/* Header Elements can be appended here seamlessly if needed */}
-        <MarqueeRow logos={logos1} direction="normal" />
-        
+    return (
+      <div
+        className="max-w-full overflow-hidden"
+        style={{
+          '--speed': speed,
+          '--numItems': numItems,
+          '--item-width': itemWidth,
+          '--item-gap': itemGap,
+          '--direction': direction,
+          maskImage: 'linear-gradient(to right, transparent, black 2rem, black calc(100% - 2rem), transparent)',
+        } as React.CSSProperties}
+      >
+        <div
+          className="w-max flex"
+          style={{
+            '--track-width': `calc(var(--item-width) * ${numItems})`,
+            '--track-gap': `calc(var(--item-gap) * ${numItems})`,
+          } as React.CSSProperties}
+        >
+          {[...logos, ...logos].map((logo, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 flex justify-center items-center bg-white/10 border border-black rounded-2xl text-white"
+              style={{
+                width: 'var(--item-width)',
+                aspectRatio: '1 / 1.2',
+                marginRight: 'var(--item-gap)',
+                animation: `marquee-move var(--speed) linear infinite ${direction}`,
+              } as React.CSSProperties}
+            >
+              <div className="w-3/5 h-auto">
+                {logo.component}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
+    );
+  };
+
+  return (
+    <div className="items-center overflow-hidden mx-3 sm:mx-42">
+       <div className="w-full max-w-6xl flex flex-col gap-y-6">
+            <Marquee logos={logos2} direction="reverse" />
+        </div>
     </div>
   );
 }
+
+export default Logomarquee;
