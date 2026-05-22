@@ -46,7 +46,7 @@ const projectsData: Project[] = [
 
 export default function SkillTabs() {
   return (
-    <section className="min-h-screen relative text-gray-100 py-20 px-4 sm:px-6 lg:px-8 font-sans bg-slate-950 overflow-hidden">
+    <section className="min-h-screen relative text-gray-100 py-20 px-4 sm:px-6 lg:px-8 font-sans  overflow-hidden">
       
       {/* 🌌 CSS-Based Galaxy Starfield Background (Synced with Previous Components) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">

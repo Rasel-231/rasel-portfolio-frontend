@@ -4,6 +4,7 @@ import { motion, AnimatePresence, animate, useMotionValue, useTransform } from '
 import { Send, Download, ArrowRight, Briefcase } from 'lucide-react';
 import Image from 'next/image';
 import profileImage from "../../../assets/profile.jpg"
+import SkillSection from '../Skill-Tech/Skill-Section';
 
 const Hero = () => {
   const roles = ["MERN Stack Web Developer", "Frontend Expert", "Backend Specialist"];
@@ -68,11 +69,11 @@ const Hero = () => {
     const nameControls = startTypeNameAnimation();
 
     return () => nameControls.stop();
-  }, []); // শুধু একবার রান করবে এবং নিজেই লুপ করবে
+  }, []); 
 
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 text-white pt-20">
+    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden  text-white pt-10">
       
       {/* 1. CSS-Based Galaxy Starfield Background */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -95,7 +96,7 @@ const Hero = () => {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center lg:text-left bg-slate-900/40 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-white/5 shadow-2xl"
+          className="text-center lg:text-left  backdrop-blur-md p-6 sm:p-8 "
         >
           {/* Intro Text */}
           <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-blue-300 text-indigo-300 text-sm font-medium mb-6">
@@ -103,7 +104,7 @@ const Hero = () => {
           </span>
           
           {/* ফিক্সড: "Hi, I'm Rasel Hasan" এখন টাইপরাইটার মতো হবে, ১ সেকেন্ড দাঁড়াবে এবং তারপর মুছে যাবে। এই জিনিসটা আজীবন চলতে থাকবে */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-4 min-h-[50px] sm:min-h-[60px] lg:min-h-[70px]">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-1 min-h-[30px] sm:min-h-[50px] lg:min-h-[70px]">
             Hi, I&apos;m{" "}
             <motion.span
               className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 inline-block"
@@ -124,7 +125,7 @@ const Hero = () => {
           </h1>
 
           {/* এই অ্যানিমেশন আগের মতো (Fade up/down) টিক রাখা হয়েছে, কোনো লেআউট শিফট ছাড়া */}
-          <div className="h-16 sm:h-20 flex flex-nowrap items-center justify-center lg:justify-start text-lg sm:text-xl lg:text-2xl font-semibold text-slate-300 mb-6 w-full overflow-hidden">
+          <div className="h-16 sm:h-20 flex flex-nowrap items-center justify-center lg:justify-start text-lg sm:text-xl lg:text-2xl font-semibold text-slate-300 mb-1 w-full overflow-hidden">
             <span className="mr-2 whitespace-nowrap shrink-0">A Professional</span>
             <div className="relative inline-block text-indigo-400 font-bold w-full min-w-[230px] sm:min-w-[340px] text-left">
               <AnimatePresence mode="wait">
@@ -143,7 +144,7 @@ const Hero = () => {
           </div>
 
           {/* Description */}
-          <p className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed mb-8">
+          <p className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed mb-1">
             Specialized in crafting robust architecture using MongoDB, Express.js, React, and Node.js. 
             I build responsive, high-performance web applications optimized for speed, scalability, 
             and pixel-perfect client experiences.
@@ -155,7 +156,7 @@ const Hero = () => {
             <motion.button 
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-6 py-3.5 rounded-xl font-semibold transition-all shadow-lg shadow-indigo-600/20 active:scale-95"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-5 py-1 rounded-sm font-semibold transition-all shadow-lg shadow-indigo-600/20 active:scale-95"
             >
               <Send size={18} />
               <span>Hire Me</span>
@@ -165,7 +166,7 @@ const Hero = () => {
             <motion.button 
               whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.05)" }}
               whileTap={{ scale: 0.98 }}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-transparent border border-slate-700 hover:border-slate-500 text-slate-300 px-6 py-3.5 rounded-xl font-semibold transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-transparent border border-slate-700 hover:border-slate-500 text-slate-300 px-5 py-1 rounded-sm font-semibold transition-all"
             >
               <Download size={18} />
               <span>Download CV</span>
@@ -180,6 +181,7 @@ const Hero = () => {
               <ArrowRight size={16} />
             </motion.button>
           </div>
+          <SkillSection/>
         </motion.div>
 
         {/* Right Side: Floating Profile Shape with Glow */}

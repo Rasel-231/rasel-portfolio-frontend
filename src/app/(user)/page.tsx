@@ -3,9 +3,12 @@ import Hero from "@/components/user/HeroSection/HeroSection";
 import Marquee from "@/components/user/Marquee'/Marquee";
 import Qualification from "@/components/user/Qualification/Qualification";
 import AdvancedSkill from "@/components/user/Skill-Tech/Skill-Advanced";
+import SkillFlex from "@/components/user/Skill-Tech/Skill-flex/Skill-Flex";
 import SkillTabs from "@/components/user/Skill-Tech/Skill-Tabs";
-import SkillTech from "@/components/user/Skill-Tech/Skill-Tech";
-import Spider from "@/components/user/Spider/Spider";
+import { Charts } from "../../components/user/Charts/Charts";
+
+
+
 
 const UserMainPages = () => {
     return (
@@ -14,8 +17,8 @@ const UserMainPages = () => {
             <AdvancedSkill/>
             <Marquee/>
             <SkillTabs/>
-            <SkillTech/>
-            <Spider/>
+            <Charts/>
+            <SkillFlex/>
             <Qualification/>
             <ContactSection/>
            

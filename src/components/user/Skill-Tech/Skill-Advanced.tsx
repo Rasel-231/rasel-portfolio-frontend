@@ -130,7 +130,7 @@ const skillsData: Skill[] = [
 
 export default function AdvancedSkill() {
   return (
-    <section className="min-h-screen relative text-slate-100 py-20 px-4 sm:px-6 lg:px-8 font-sans bg-slate-950 overflow-hidden">
+    <section className="min-h-screen relative text-slate-100 pt-2 pb-10 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
       
       {/* 🌌 Synchronized Galactic Background Core Layer */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">

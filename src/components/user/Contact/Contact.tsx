@@ -5,7 +5,7 @@ import { Copy, Send, Check } from 'lucide-react';
 export default function ContactSection() {
   const [copied, setCopied] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const email = 'rasel@dev.com';
+  const email = 'rasel.byte64@gmail.com';
 
   const handleCopy = async () => {
     try {
@@ -29,7 +29,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="min-h-screen bg-slate-950 text-gray-100 py-20 px-4 sm:px-6 lg:px-8 font-sans flex items-center relative overflow-hidden">
+    <section className="min-h-screen  text-gray-100 py-20 px-4 sm:px-6 lg:px-8 font-sans flex items-center relative overflow-hidden">
       
       {/* 1. CSS-Based Galaxy Starfield Background (Hero Section-এর সাথে ম্যাচিং) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -91,7 +91,7 @@ export default function ContactSection() {
                 Whatsapp
               </span>
               <span className="text-base text-[#06b6d4] font-medium tracking-wide selection:bg-cyan-500/20">
-                +880 1700-000000
+                +880 1516-095145
               </span>
             </div>
 

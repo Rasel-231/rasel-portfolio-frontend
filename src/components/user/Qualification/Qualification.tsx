@@ -67,7 +67,7 @@ const defaultTimelineData: TimelineItem[] = [
 export default function Qualification({ data = defaultTimelineData, className = "" }: TimelineProps) {
   return (
     <div
-      className={`relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 text-white py-20 ${className}`}
+      className={`relative w-full min-h-screen flex items-center justify-center overflow-hidden  text-white py-20 ${className}`}
     >
       {/* 🌌 1. CSS-Based Galaxy Starfield Background (Matched with Hero) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">

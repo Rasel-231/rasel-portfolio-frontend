@@ -69,7 +69,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative w-full overflow-hidden bg-slate-950 text-white border-t border-white/5">
+    <footer className="relative w-full overflow-hidden  text-white border-t border-white/5">
       
       {/* CSS-Based Galaxy Starfield Background (Matched with Hero) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-70">

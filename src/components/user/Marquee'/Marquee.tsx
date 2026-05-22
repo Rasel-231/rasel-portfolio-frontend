@@ -73,17 +73,6 @@ const logos1 = [
   { id: 'l1-9', component: <SvelteLogo /> },
 ];
 
-const logos2 = [
-  { id: 'l2-1', component: <ReactLogo /> },
-  { id: 'l2-2', component: <AstroLogo /> },
-  { id: 'l2-3', component: <TailwindLogo /> },
-  { id: 'l2-4', component: <JSLogo /> },
-  { id: 'l2-5', component: <NextjsLogo /> },
-  { id: 'l2-6', component: <RemixLogo /> },
-  { id: 'l2-7', component: <JSLogo /> },
-  { id: 'l2-8', component: <TSLogo /> },
-  { id: 'l2-9', component: <SvelteLogo /> },
-];
 
 interface MarqueeRowProps {
   logos: typeof logos1;
@@ -157,7 +146,7 @@ export default function Marquee() {
   }, []);
 
   return (
-    <div className="w-full relative flex items-center justify-center overflow-hidden py-16 bg-slate-950">
+    <div className="w-full relative flex items-center justify-center overflow-hidden py-16 ">
       
       {/* 🌌 Synchronized Galactic Background Wrapper */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -177,7 +166,7 @@ export default function Marquee() {
       <div className="w-full max-w-6xl flex flex-col gap-y-7 px-4 relative z-10">
         {/* Header Elements can be appended here seamlessly if needed */}
         <MarqueeRow logos={logos1} direction="normal" />
-        <MarqueeRow logos={logos2} direction="reverse" />
+        
       </div>
     </div>
   );
