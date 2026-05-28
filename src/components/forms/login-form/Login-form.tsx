@@ -1,7 +1,19 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link'; // 💡 Next.js Link component imported for redirection
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation'; 
+import { useLoginMutation } from '@/redux/api/queryApi/authApi';
+import { toast } from 'react-toastify';
+
+interface FetchBaseQueryError {
+  data?: {
+    message?: string;
+  };
+}
+interface SerializedError {
+  message?: string;
+}
 
 const EmailIcon: React.FC = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -44,16 +56,54 @@ const AppleIcon: React.FC = () => (
 );
 
 const Login: React.FC = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+  const [customError, setCustomError] = useState<string | null>(null);
+
+  const [login, { isLoading }] = useLoginMutation();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  const handleLoginSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setCustomError(null);
+
+    if (!email || !password) {
+      setCustomError('Please fill in all fields.');
+      return;
+    }
+
+    try {
+      const response = await login({ email, password }).unwrap();
+
+      if (response?.data?.accessToken) {
+        localStorage.setItem('accessToken', response.data.accessToken);
+        toast.success('Login successful!');
+        
+        const rawRedirect = searchParams.get('redirect');
+        const redirectTo = rawRedirect ? decodeURIComponent(rawRedirect) : '/dashboard';
+        
+        router.push(redirectTo);
+      }
+    } catch (error) {
+      const fetchError = error as FetchBaseQueryError;
+      const serialError = error as SerializedError;
+      const errorMessage = fetchError.data?.message || serialError.message || 'Invalid email or password. Please try again.';
+      
+      setCustomError(errorMessage);
+      toast.error('Login failed!');
+    }
+  };
+
   return (
-    <div className="relative w-full max-w-md   p-8 mx-auto ">
+    <div className="relative w-full max-w-md p-8 mx-auto">
       <div className="flex justify-center mb-6">
-        <div className="w-12 h-12   text-indigo-500 rounded-xl flex items-center justify-center ">
+        <div className="w-12 h-12 text-indigo-500 rounded-xl flex items-center justify-center">
           <LockIcon />
         </div>
       </div>
@@ -65,58 +115,77 @@ const Login: React.FC = () => {
         Access your personalized dashboard and manage your account settings with ease.
       </p>
 
-      <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-        {/* Email Input */}
+      {customError && (
+        <div className="mb-5 p-3 text-sm text-red-500 bg-red-500/10 border border-red-500/20 rounded-xl text-center font-medium">
+          {customError}
+        </div>
+      )}
+
+      <form className="space-y-5" onSubmit={handleLoginSubmit}>
         <div className="relative">
           <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-gray-400 dark:text-slate-500">
             <EmailIcon />
           </span>
           <input
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Email address"
             aria-label="Email"
-            className="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-slate-950/40 border border-gray-200 dark:border-white/5 rounded-xl focus:ring-2 focus:ring-indigo-500 dark:focus:ring-purple-500 focus:border-transparent outline-none transition duration-200 text-gray-900 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 text-sm font-medium"
+            disabled={isLoading}
+            className="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-slate-950/40 border border-gray-200 dark:border-white/5 rounded-xl focus:ring-2 focus:ring-indigo-500 dark:focus:ring-purple-500 focus:border-transparent outline-none transition duration-200 text-gray-900 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 text-sm font-medium disabled:opacity-60"
           />
         </div>
 
-        {/* Password Input */}
         <div className="relative">
           <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-gray-400 dark:text-slate-500">
             <LockIcon />
           </span>
           <input
             type={passwordVisible ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             aria-label="Password"
-            className="w-full pl-11 pr-11 py-3 bg-gray-50 dark:bg-slate-950/40 border border-gray-200 dark:border-white/5 rounded-xl focus:ring-2 focus:ring-indigo-500 dark:focus:ring-purple-500 focus:border-transparent outline-none transition duration-200 text-gray-900 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 text-sm font-medium"
+            disabled={isLoading}
+            className="w-full pl-11 pr-11 py-3 bg-gray-50 dark:bg-slate-950/40 border border-gray-200 dark:border-white/5 rounded-xl focus:ring-2 focus:ring-indigo-500 dark:focus:ring-purple-500 focus:border-transparent outline-none transition duration-200 text-gray-900 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 text-sm font-medium disabled:opacity-60"
           />
           <button
             type="button"
             onClick={togglePasswordVisibility}
-            className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300 transition-colors"
+            disabled={isLoading}
+            className="absolute inset-y-0 right-0 flex items-center pr-3.5 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300 transition-colors disabled:opacity-50"
             aria-label={passwordVisible ? "Hide password" : "Show password"}
           >
             {passwordVisible ? <EyeOffIcon /> : <EyeIcon />}
           </button>
         </div>
 
-        {/* Forgot Password */}
         <div className="text-right">
           <a href="#" className="text-xs font-semibold text-gray-500 dark:text-slate-400 hover:text-indigo-500 dark:hover:text-purple-400 transition-colors">
             Forgot password?
           </a>
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-indigo-600/20 active:scale-[0.98] transition-all transform duration-150 text-sm"
+          disabled={isLoading}
+          className="w-full flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-indigo-600/20 active:scale-[0.98] transition-all transform duration-150 text-sm disabled:opacity-70 disabled:scale-100"
         >
-         Let&apos;s Start
+          {isLoading ? (
+            <span className="flex items-center gap-2">
+              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Verifying...
+            </span>
+          ) : (
+            "Let's Start"
+          )}
         </button>
       </form>
 
-      {/* Divider */}
       <div className="flex items-center my-6">
         <hr className="flex-grow border-t border-gray-200 dark:border-white/5" />
         <span className="mx-4 text-xs font-semibold tracking-wider text-gray-400 dark:text-slate-500 uppercase">
@@ -125,9 +194,7 @@ const Login: React.FC = () => {
         <hr className="flex-grow border-t border-gray-200 dark:border-white/5" />
       </div>
 
-      {/* Social Login Buttons */}
       <div className="flex justify-center space-x-4 mb-6">
-        {/* Google */}
         <button aria-label="Sign in with Google" className="w-12 h-12 flex items-center justify-center bg-gray-50 dark:bg-slate-950/40 border border-gray-200 dark:border-white/5 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-800/60 transition-all active:scale-90 shadow-sm">
           <Image 
             src="https://www.google.com/favicon.ico" 
@@ -138,18 +205,15 @@ const Login: React.FC = () => {
           />
         </button>
 
-        {/* Facebook */}
         <button aria-label="Sign in with Facebook" className="w-12 h-12 flex items-center justify-center bg-gray-50 dark:bg-slate-950/40 border border-gray-200 dark:border-white/5 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-800/60 transition-all active:scale-90 shadow-sm text-blue-600">
           <FacebookIcon />
         </button>
 
-        {/* Apple */}
         <button aria-label="Sign in with Apple" className="w-12 h-12 flex items-center justify-center bg-gray-50 dark:bg-slate-950/40 border border-gray-200 dark:border-white/5 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-800/60 transition-all active:scale-90 shadow-sm text-gray-900 dark:text-white">
           <AppleIcon />
         </button>
       </div>
 
-      {/* 2. Bottom Minimal Back Button */}
       <div className="text-center border-t border-gray-100 dark:border-white/5 pt-4">
         <Link 
           href="/" 

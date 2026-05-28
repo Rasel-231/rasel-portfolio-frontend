@@ -14,10 +14,9 @@ export default function UserLayout({
         fill
         priority
         sizes="100vw"
-        className="object-cover -z-10 " 
+        className="object-cover -z-10" 
       />
       
-      {/* Content Layer */}
       <div className="relative z-10 flex flex-col min-h-screen">
         <main className="flex-grow flex items-center justify-center">
           {children}

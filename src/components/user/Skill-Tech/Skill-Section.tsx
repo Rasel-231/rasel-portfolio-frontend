@@ -1,47 +1,104 @@
 "use client";
 
-import React from 'react';
 
 export default function SkillSection() {
   const socials = [
-    { viewBox: "0 0 24 24", path: "M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4 M9 18c-4.51 2-5-2-7-2" },
-    { viewBox: "0 0 24 24", path: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" },
-    { viewBox: "0 0 24 24", path: "M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" },
-    { viewBox: "0 0 24 24", path: "M22 4H2v16h20V4z M2 7l10 7 10-7" },
-    { viewBox: "0 0 24 24", path: "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" }
+    {
+      name: "LinkedIn",
+      link: "https://www.linkedin.com/in/rasel-rasel-7707b240b",
+      viewBox: "0 0 24 24",
+      path: "M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.966 0-1.75-.79-1.75-1.76s.784-1.76 1.75-1.76 1.75.79 1.75 1.76-.784 1.76-1.75 1.76zm13.5 11.28h-3v-5.6c0-3.368-4-3.113-4 0v5.6h-3v-10h3v1.6c1.396-2.586 7-2.777 7 2.476v5.924z",
+    },
+    {
+      name: "GitHub",
+      link: "https://github.com/Rasel-231",
+      viewBox: "0 0 24 24",
+      path: "M12 .5C5.649.5.5 5.649.5 12c0 5.084 3.292 9.388 7.865 10.91.575.106.785-.25.785-.556 0-.274-.01-1.003-.015-1.97-3.197.694-3.87-1.542-3.87-1.542-.523-1.33-1.277-1.684-1.277-1.684-1.044-.714.08-.7.08-.7 1.154.082 1.76 1.185 1.76 1.185 1.026 1.76 2.69 1.252 3.35.957.104-.743.402-1.252.73-1.54-2.553-.29-5.238-1.276-5.238-5.678 0-1.254.448-2.28 1.183-3.083-.118-.29-.513-1.453.112-3.03 0 0 .964-.31 3.16 1.18a10.96 10.96 0 0 1 2.88-.388c.976.004 1.96.132 2.88.388 2.195-1.49 3.158-1.18 3.158-1.18.626 1.577.23 2.74.113 3.03.737.803 1.182 1.83 1.182 3.083 0 4.413-2.69 5.384-5.255 5.668.413.356.78 1.06.78 2.14 0 1.545-.014 2.792-.014 3.17 0 .308.208.667.79.553C20.71 21.383 24 17.08 24 12 24 5.649 18.351.5 12 .5z",
+    },
+    {
+      name: "Facebook",
+      link: "https://www.facebook.com/nihon6825",
+      viewBox: "0 0 24 24",
+      path: "M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z",
+    },
+    {
+      name: "WhatsApp",
+      link: "https://wa.me/qr/6WJI3FBOMYBRL1",
+      viewBox: "0 0 24 24",
+      path: "M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.59 0 .34 5.24.34 11.7c0 2.06.54 4.07 1.57 5.85L0 24l6.65-1.86a11.66 11.66 0 0 0 5.41 1.38h.01c6.47 0 11.72-5.25 11.72-11.72a11.67 11.67 0 0 0-3.27-8.32z",
+    },
   ];
 
   const skills = [
-    { name: "Next.js", border: "border-[#2d1b3d]", bg: "bg-[#160d21]/30", text: "text-[#a482cc]", glow: "[text-shadow:-1px_-1px_0_rgba(239,68,68,0.5),1px_1px_0_rgba(59,130,246,0.5)]" },
-    { name: "MongoDBv", border: "border-[#143a3d]", bg: "bg-[#0a1e21]/30", text: "text-[#4cd2cc]", glow: "[text-shadow:-1px_-1px_0_rgba(239,68,68,0.4),1px_1px_0_rgba(16,185,129,0.4)]" },
-    { name: "Node.js", border: "border-[#122543]", bg: "bg-[#091221]/30", text: "text-[#5289db]", glow: "" },
-    { name: "PostgreSQL", border: "border-[#2a1a3a]", bg: "bg-[#150d1d]/30", text: "text-[#8871b6]", glow: "[text-shadow:-1px_-1px_0_rgba(239,68,68,0.5),1px_1px_0_rgba(59,130,246,0.5)]" },
-    { name: "TypeScript", border: "border-[#0f353a]", bg: "bg-[#071a1d]/30", text: "text-[#3fc2cc]", glow: "[text-shadow:-1px_-1px_0_rgba(239,68,68,0.4),1px_1px_0_rgba(16,185,129,0.4)]" }
+    {
+      name: "MongoDB",
+      link: "https://www.mongodb.com",
+      border: "border-green-700",
+      bg: "bg-green-900/20",
+      text: "text-green-400",
+    },
+    {
+      name: "Node.js",
+      link: "https://nodejs.org",
+      border: "border-green-800",
+      bg: "bg-green-900/20",
+      text: "text-green-300",
+    },
+    {
+      name: "PostgreSQL",
+      link: "https://www.postgresql.org",
+      border: "border-blue-800",
+      bg: "bg-blue-900/20",
+      text: "text-blue-300",
+    },
+    {
+      name: "TypeScript",
+      link: "https://www.typescriptlang.org",
+      border: "border-blue-700",
+      bg: "bg-blue-900/20",
+      text: "text-blue-400",
+    },
   ];
 
   return (
-    <div className="flex flex-col justify-center items-start py-2 font-sans select-none gap-3">
-      {/* Row 1: Social Media Icons */}
-      <div className="flex flex-wrap gap-1.5">
-        {socials.map((icon, i) => (
-          <a key={i} href="#" className="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-800 text-slate-500 hover:text-slate-300 hover:border-slate-600 transition-all duration-200">
-            <svg className="w-4 h-4" viewBox={icon.viewBox} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d={icon.path} />
+    <div className="flex flex-col gap-3 py-3">
+
+      {/* Socials */}
+      <div className="flex flex-wrap gap-2">
+        {socials.map((item, i) => (
+          <a
+            key={i}
+            href={item.link}
+            target="_blank"
+            className="w-10 h-10 flex items-center justify-center rounded-md border border-gray-700 hover:border-gray-400 transition"
+          >
+            <svg
+              viewBox={item.viewBox}
+              className="w-4 h-4"
+              fill="currentColor"
+            >
+              <path d={item.path} />
             </svg>
           </a>
         ))}
       </div>
 
-      {/* Row 2 & 3: Tech Stack Badges */}
-      <div className="flex flex-wrap gap-1.5 items-center max-w-lg">
+      {/* Skills */}
+      <div className="flex flex-wrap gap-2">
         {skills.map((skill, i) => (
-          <div key={i} className={`px-2.5 py-1 rounded-md border ${skill.border} ${skill.bg}`}>
-            <span className={`font-medium tracking-wide text-xs ${skill.text} ${skill.glow}`}>
+          <a
+            key={i}
+            href={skill.link}
+            target="_blank"
+            className={`px-3 py-1 rounded-md border ${skill.border} ${skill.bg}`}
+          >
+            <span className={`text-xs font-medium ${skill.text}`}>
               {skill.name}
             </span>
-          </div>
+          </a>
         ))}
       </div>
+
     </div>
   );
 }

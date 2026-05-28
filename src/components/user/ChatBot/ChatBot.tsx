@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import profileImage from "@/assets/profile.jpg";
+import profileImage from "@/assets/customer.png";
 
 const ChatBot = () => {
     const [isOpen, setIsOpen] = useState(false);
