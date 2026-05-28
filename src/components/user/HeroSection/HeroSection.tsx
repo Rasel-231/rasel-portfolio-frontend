@@ -165,12 +165,13 @@ const Hero = () => {
         <div className="text-center lg:text-left backdrop-blur-md p-6 sm:p-8">
 
           {/* Badge */}
-          <motion.span
-            {...pureFadeIn(0.2)}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-blue-300 text-indigo-300 text-sm font-medium mb-6"
-          >
-            <Briefcase size={14} /> Available for Hire
-          </motion.span>
+          {/* Neon Green Badge */}
+<motion.span
+  {...pureFadeIn(0.2)}
+  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-400 text-green-300 text-sm font-medium mb-6 shadow-[0_0_10px_rgba(34,197,94,0.5)]"
+>
+  <Briefcase size={14} /> Available for Hire
+</motion.span>
 
           {/* Name */}
           <motion.h1
