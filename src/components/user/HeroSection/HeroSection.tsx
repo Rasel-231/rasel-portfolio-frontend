@@ -222,18 +222,20 @@ const Hero = () => {
 </motion.div>
 
           <motion.p
-            {...pureFadeIn(0.8)}
-            className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed mb-6 min-h-[140px] sm:min-h-[100px] lg:min-h-[120px]"
-          >
-            <motion.span>{displayDescText}</motion.span>
-            <motion.span
-              animate={{ opacity: [1, 0] }}
-              transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-              className="inline-block ml-0.5 text-indigo-400 font-normal align-baseline"
-            >
-              |
-            </motion.span>
-          </motion.p>
+  {...pureFadeIn(0.8)}
+  className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed mb-6 min-h-[140px] sm:min-h-[100px] lg:min-h-[120px]"
+>
+  {/* এখানেও motion.span ব্যবহার করুন */}
+  <motion.span>{displayDescText}</motion.span>
+  
+  <motion.span
+    animate={{ opacity: [1, 0] }}
+    transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+    className="inline-block ml-0.5 text-indigo-400 font-normal align-baseline"
+  >
+    |
+  </motion.span>
+</motion.p>
 
           <motion.div
             {...pureFadeIn(1.0)}
