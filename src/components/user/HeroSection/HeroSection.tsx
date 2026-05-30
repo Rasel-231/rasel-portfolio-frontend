@@ -181,47 +181,45 @@ const Hero = () => {
             <Briefcase size={14} /> Available for Hire
           </motion.span>
 
-          <motion.h1
-            {...pureFadeIn(0.4)}
-            className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-1 min-h-[30px] sm:min-h-[50px] lg:min-h-[70px]"
-          >
-            Hi, I&apos;m{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 inline-block">
-              <motion.span className="inline-block whitespace-nowrap">
-                {displayNameText}
-              </motion.span>
-              <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-                className="inline-block ml-1 text-purple-400 font-normal text-3xl sm:text-4xl lg:text-5xl align-middle"
-              >
-                |
-              </motion.span>
-            </span>
-          </motion.h1>
-
-          <motion.div
-            {...pureFadeIn(0.6)}
-            className="h-16 sm:h-20 flex flex-nowrap items-center justify-center lg:justify-start text-lg sm:text-xl lg:text-2xl font-semibold text-slate-300 mb-1 w-full overflow-hidden"
-          >
-            <span className="mr-2 whitespace-nowrap shrink-0">
-              A Professional
-            </span>
-            <div className="relative inline-block text-indigo-400 font-bold w-full min-w-[230px] sm:min-w-[340px] text-left">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={displayRoleIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
-                  className="absolute top-1/2 -translate-y-1/2 left-0 inline-block whitespace-nowrap"
-                >
-                  {roles[displayRoleIndex]}
-                </motion.span>
-              </AnimatePresence>
-            </div>
-          </motion.div>
+    <motion.h1
+  {...pureFadeIn(0.4)}
+  className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-4 min-h-[80px] flex items-center justify-center lg:justify-start flex-wrap"
+>
+  <span className="mr-2">Hi, I&apos;m</span>
+  
+  {/* এখানে motion.span ব্যবহার করুন */}
+  <motion.span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 inline-block min-w-[200px]">
+    {displayNameText}
+  </motion.span>
+  
+  <motion.span
+    animate={{ opacity: [1, 0] }}
+    transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+    className="text-purple-400 font-normal ml-1"
+  >
+    |
+  </motion.span>
+</motion.h1>
+<motion.div
+  {...pureFadeIn(0.6)}
+  className="flex flex-col items-center lg:items-start text-lg sm:text-xl lg:text-2xl font-semibold text-slate-300 mb-6 w-full"
+>
+  <span className="mb-1">A Professional</span>
+  <div className="relative text-indigo-400 font-bold min-h-[40px] w-full text-center lg:text-left">
+    <AnimatePresence mode="wait">
+      <motion.span
+        key={displayRoleIndex}
+        initial={{ opacity: 0, y: 5 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -5 }}
+        transition={{ duration: 0.3 }}
+        className="block"
+      >
+        {roles[displayRoleIndex]}
+      </motion.span>
+    </AnimatePresence>
+  </div>
+</motion.div>
 
           <motion.p
             {...pureFadeIn(0.8)}
