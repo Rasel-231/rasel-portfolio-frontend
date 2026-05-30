@@ -1,6 +1,7 @@
 import { tagtypes } from "@/types/types";
 import { baseApi } from "./baseApi";
 
+
 const PORTFOLIO_URL = "settings";
 
 const settingsApiService = baseApi.injectEndpoints({
@@ -12,7 +13,7 @@ const settingsApiService = baseApi.injectEndpoints({
         }),
         createProject: build.mutation({
             query: (formData) => ({
-                url: `${PORTFOLIO_URL}/create-project`, // ✅ was: upload-project
+                url: `${PORTFOLIO_URL}/upload-project`, // ✅ was: upload-project
                 method: "POST",
                 data: formData,
                 contentType: "multipart/form-data",
@@ -48,9 +49,22 @@ const settingsApiService = baseApi.injectEndpoints({
             }),
             invalidatesTags: [tagtypes.cv],
         }),
+        visitorCount: build.mutation({
+            query: (name) => ({
+                url: `${PORTFOLIO_URL}/visit/${name}`, 
+                method: "POST",
+            }),
+            invalidatesTags: [tagtypes.visit],
+        }),
+        stats: build.query({
+            query: () => ({ 
+                url: `${PORTFOLIO_URL}/stats`,
+                method: "GET" }), 
+            providesTags: [tagtypes.visit],
+        }),
         downloadCv: build.query({
             query: (id) => ({
-                url: `${PORTFOLIO_URL}/download/${id}`, // ✅ was: download-cv (id নেই ছিল)
+                url: `${PORTFOLIO_URL}/download/${id}`, 
                 method: "GET",
             }),
             providesTags: [tagtypes.cv],
@@ -66,4 +80,6 @@ export const {
     useUploadCvMutation,
     useDeleteCvMutation,
     useDownloadCvQuery,
+    useVisitorCountMutation,
+    useStatsQuery,
 } = settingsApiService;

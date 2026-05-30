@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Bounce, ToastContainer } from "react-toastify/unstyled";
+import "react-toastify/dist/ReactToastify.css"; 
+import { ToastContainer } from "react-toastify";
+import { Bounce } from "react-toastify/unstyled";
 import Providers from "@/redux/api/redux-setup/Provider";
+import VisitorTracker from "@/components/shared/visitorCount/visitorCount";
+
 
 
 const geistSans = Geist({
@@ -33,7 +37,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <ToastContainer
           position="top-center"
-          autoClose={5000}
+          autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick={false}
@@ -45,6 +49,7 @@ export default function RootLayout({
           transition={Bounce}
         />
         <Providers>
+          <VisitorTracker />
           {children}
         </Providers>
       </body>

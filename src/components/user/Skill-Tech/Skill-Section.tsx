@@ -1,5 +1,6 @@
 "use client";
-
+import React from "react";
+import { motion } from "framer-motion";
 
 export default function SkillSection() {
   const socials = [
@@ -30,75 +31,52 @@ export default function SkillSection() {
   ];
 
   const skills = [
-    {
-      name: "MongoDB",
-      link: "https://www.mongodb.com",
-      border: "border-green-700",
-      bg: "bg-green-900/20",
-      text: "text-green-400",
-    },
-    {
-      name: "Node.js",
-      link: "https://nodejs.org",
-      border: "border-green-800",
-      bg: "bg-green-900/20",
-      text: "text-green-300",
-    },
-    {
-      name: "PostgreSQL",
-      link: "https://www.postgresql.org",
-      border: "border-blue-800",
-      bg: "bg-blue-900/20",
-      text: "text-blue-300",
-    },
-    {
-      name: "TypeScript",
-      link: "https://www.typescriptlang.org",
-      border: "border-blue-700",
-      bg: "bg-blue-900/20",
-      text: "text-blue-400",
-    },
+    { name: "MongoDB", link: "https://www.mongodb.com", border: "border-green-700", bg: "bg-green-900/20", text: "text-green-400" },
+    { name: "Next.js", link: "https://nextjs.org", border: "border-gray-500", bg: "bg-gray-800/20", text: "text-gray-300" },
+    { name: "React", link: "https://reactjs.org", border: "border-cyan-700", bg: "bg-cyan-900/20", text: "text-cyan-400" },
+    { name: "Tailwind", link: "https://tailwindcss.com", border: "border-teal-700", bg: "bg-teal-900/20", text: "text-teal-400" },
+    { name: "Node.js", link: "https://nodejs.org", border: "border-green-800", bg: "bg-green-900/20", text: "text-green-300" },
+    { name: "PostgreSQL", link: "https://www.postgresql.org", border: "border-blue-700", bg: "bg-blue-900/20", text: "text-blue-400" },
+    { name: "TypeScript", link: "https://www.typescriptlang.org", border: "border-blue-800", bg: "bg-blue-900/20", text: "text-blue-300" },
   ];
 
   return (
-    <div className="flex flex-col gap-3 py-3">
-
+    <div className="flex flex-col gap-4 py-3">
       {/* Socials */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-3">
         {socials.map((item, i) => (
-          <a
+          <motion.a
             key={i}
             href={item.link}
             target="_blank"
-            className="w-10 h-10 flex items-center justify-center rounded-md border border-gray-700 hover:border-gray-400 transition"
+            whileHover={{ y: -5, scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="w-10 h-10 flex items-center justify-center rounded-md border border-gray-700 hover:border-indigo-400 bg-gray-900/50 transition-colors"
           >
-            <svg
-              viewBox={item.viewBox}
-              className="w-4 h-4"
-              fill="currentColor"
-            >
+            <svg viewBox={item.viewBox} className="w-5 h-5" fill="currentColor">
               <path d={item.path} />
             </svg>
-          </a>
+          </motion.a>
         ))}
       </div>
 
       {/* Skills */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-3">
         {skills.map((skill, i) => (
-          <a
+          <motion.a
             key={i}
             href={skill.link}
             target="_blank"
-            className={`px-3 py-1 rounded-md border ${skill.border} ${skill.bg}`}
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className={`px-4 py-1.5 rounded-sm border ${skill.border} ${skill.bg} backdrop-blur-sm cursor-pointer shadow-lg`}
           >
-            <span className={`text-xs font-medium ${skill.text}`}>
+            <span className={`text-xs font-bold uppercase tracking-wider ${skill.text}`}>
               {skill.name}
             </span>
-          </a>
+          </motion.a>
         ))}
       </div>
-
     </div>
   );
 }

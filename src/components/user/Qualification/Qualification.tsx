@@ -40,14 +40,7 @@ const Badge = ({ children, className = "" }: { children: React.ReactNode; classN
 // 💡 EDUCATIONAL INSIGHT: Populating Your Exact Academic Roadmap
 // The items are mapped cleanly chronologically (Newest down to Older milestones).
 const defaultTimelineData: TimelineItem[] = [
-  {
-    id: "1",
-    title: "Senior Full Stack Developer",
-    company: "TechCorp Solutions",
-    date: "2023 - Present",
-    description: "Led development team, implemented CI/CD pipelines, and optimized system architectures to reduce deployment time by 60%.",
-    type: 'work'
-  },
+  
   {
     id: "2",
     title: "BBA / Professional Degree in Accounting & Information Systems (AIS)",

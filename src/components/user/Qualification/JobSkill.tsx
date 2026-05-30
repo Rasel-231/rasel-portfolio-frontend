@@ -55,13 +55,7 @@ const defaultTimelineData: TimelineItem[] = [
     date: "2022",
     description: "Built complete e-commerce solution with 99.9% uptime handling 10k+ daily transactions.",
   },
-  {
-    id: "4",
-    title: "Computer Science Degree",
-    company: "University of Technology",
-    date: "2017 - 2021",
-    description: "Bachelor of Science, Magna Cum Laude with 3.8 GPA, focus on software engineering.",
-  },
+  
 ]
 
 export default function JobSkill({ data = defaultTimelineData, className = "" }: TimelineProps) {
@@ -101,7 +95,7 @@ export default function JobSkill({ data = defaultTimelineData, className = "" }:
               <Briefcase size={14} /> My Journey
             </span>
             <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">
-              Professional Timeline
+             Career Journey
             </h2>
           </div>
 

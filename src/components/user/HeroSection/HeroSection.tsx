@@ -7,22 +7,40 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { Send, Download, ArrowRight, Briefcase,} from "lucide-react";
+import { Send, Download, ArrowRight, Briefcase } from "lucide-react";
 import Image from "next/image";
 import profileImage from "../../../assets/profile.jpg";
 import SkillSection from "../Skill-Tech/Skill-Section";
 import { useGetFilesQuery } from "@/redux/api/queryApi/settingsApi";
 
-
 const pureFadeIn = (delay: number = 0) => ({
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   transition: {
-    duration: 1.5, 
-    ease: "linear" as const, 
+    duration: 1.5,
+    ease: "linear" as const,
     delay,
   },
 });
+
+// বাটনটির সেই বিশেষ ইফেক্টটি এখানে যুক্ত করা হয়েছে
+const AnimatedHireButton = () => (
+  <div className="relative group p-[2px] rounded-[10px] overflow-hidden">
+    <motion.div
+      className="absolute inset-0 bg-[conic-gradient(from_0deg,red,pink,yellow,green,blue,red)]"
+      animate={{ rotate: 360 }}
+      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+    />
+    <a
+      href="https://wa.me/qr/6WJI3FBOMYBRL1"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative flex items-center justify-center gap-2 bg-gradient-to-r from-slate-800 to-slate-950 text-white px-5 py-2.5 rounded-[9px] font-bold text-sm hover:scale-[1.02] transition-transform duration-300"
+    >
+      <Send size={16} /> Hire Me
+    </a>
+  </div>
+);
 
 const Hero = () => {
   const roles = [
@@ -63,15 +81,11 @@ const Hero = () => {
       ? currentRoleIndex
       : roles.length * 2 - 2 - currentRoleIndex;
 
-  // ==================== Name Typing Animation ====================
+  // Name Typing Animation
   const nameToType = "Rasel Hasan";
   const nameCount = useMotionValue(0);
-  const roundedNameCount = useTransform(nameCount, (latest) =>
-    Math.round(latest),
-  );
-  const displayNameText = useTransform(roundedNameCount, (latest) =>
-    nameToType.slice(0, latest),
-  );
+  const roundedNameCount = useTransform(nameCount, (latest) => Math.round(latest));
+  const displayNameText = useTransform(roundedNameCount, (latest) => nameToType.slice(0, latest));
 
   useEffect(() => {
     const startTypeNameAnimation = () => {
@@ -100,16 +114,12 @@ const Hero = () => {
     return () => nameControls.stop();
   }, [nameCount, nameToType.length]);
 
-  // ==================== Description Typing Animation ====================
+  // Description Typing Animation
   const descToType =
     "Specialized in crafting robust architecture using MongoDB, Express.js, React, and Node.js. I build responsive, high-performance web applications optimized for speed, scalability, and pixel-perfect client experiences.";
   const descCount = useMotionValue(0);
-  const roundedDescCount = useTransform(descCount, (latest) =>
-    Math.round(latest),
-  );
-  const displayDescText = useTransform(roundedDescCount, (latest) =>
-    descToType.slice(0, latest),
-  );
+  const roundedDescCount = useTransform(descCount, (latest) => Math.round(latest));
+  const displayDescText = useTransform(roundedDescCount, (latest) => descToType.slice(0, latest));
 
   useEffect(() => {
     const startDescAnimation = () => {
@@ -164,16 +174,13 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="text-center lg:text-left backdrop-blur-md p-6 sm:p-8">
 
-          {/* Badge */}
-          {/* Neon Green Badge */}
-<motion.span
-  {...pureFadeIn(0.2)}
-  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-400 text-green-300 text-sm font-medium mb-6 shadow-[0_0_10px_rgba(34,197,94,0.5)]"
->
-  <Briefcase size={14} /> Available for Hire
-</motion.span>
+          <motion.span
+            {...pureFadeIn(0.2)}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-400 text-green-300 text-sm font-medium mb-6 shadow-[0_0_10px_rgba(34,197,94,0.5)]"
+          >
+            <Briefcase size={14} /> Available for Hire
+          </motion.span>
 
-          {/* Name */}
           <motion.h1
             {...pureFadeIn(0.4)}
             className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-1 min-h-[30px] sm:min-h-[50px] lg:min-h-[70px]"
@@ -193,7 +200,6 @@ const Hero = () => {
             </span>
           </motion.h1>
 
-          {/* Role */}
           <motion.div
             {...pureFadeIn(0.6)}
             className="h-16 sm:h-20 flex flex-nowrap items-center justify-center lg:justify-start text-lg sm:text-xl lg:text-2xl font-semibold text-slate-300 mb-1 w-full overflow-hidden"
@@ -217,7 +223,6 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Description */}
           <motion.p
             {...pureFadeIn(0.8)}
             className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed mb-6 min-h-[140px] sm:min-h-[100px] lg:min-h-[120px]"
@@ -232,20 +237,12 @@ const Hero = () => {
             </motion.span>
           </motion.p>
 
-          {/* Buttons */}
           <motion.div
             {...pureFadeIn(1.0)}
             className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
           >
-           <motion.button
-  whileHover={{ scale: 1.03 }}
-  whileTap={{ scale: 0.98 }}
-  onClick={() => window.open("https://wa.me/qr/6WJI3FBOMYBRL1", "_blank")}
-  className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-5 py-2 rounded-sm font-semibold transition-all shadow-lg shadow-indigo-600/20 active:scale-95"
->
-  <Send size={18} />
-  <span>Hire Me</span>
-</motion.button>
+            {/* এখানে AnimatedHireButton কম্পোনেন্টটি ব্যবহার করা হয়েছে */}
+            <AnimatedHireButton />
 
             <motion.button
               onClick={downloadcv}
@@ -269,14 +266,12 @@ const Hero = () => {
             </motion.button>
           </motion.div>
 
-          {/* Skills */}
           <motion.div {...pureFadeIn(1.2)}>
             <SkillSection />
           </motion.div>
 
         </div>
 
-        {/* Profile Image */}
         <div className="flex justify-center items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
