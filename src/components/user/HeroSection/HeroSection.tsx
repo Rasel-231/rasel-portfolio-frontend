@@ -220,12 +220,11 @@ const Hero = () => {
     </AnimatePresence>
   </div>
 </motion.div>
-
-          <motion.p
+<motion.p
   {...pureFadeIn(0.8)}
-  className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed mb-6 min-h-[140px] sm:min-h-[100px] lg:min-h-[120px]"
+  // এখানে min-height টি খুবই গুরুত্বপূর্ণ। এটি নিচের বাটনগুলোকে নড়তে দিবে না।
+  className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed mb-6 min-h-[140px] sm:min-h-[120px]"
 >
-  {/* এখানেও motion.span ব্যবহার করুন */}
   <motion.span>{displayDescText}</motion.span>
   
   <motion.span
