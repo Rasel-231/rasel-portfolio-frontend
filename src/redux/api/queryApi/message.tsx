@@ -13,6 +13,14 @@ const messageApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: [tagtypes.message],
         }),
+        replyMessage: build.mutation({
+            query: (messageData) => ({
+                url: `${MESSAGE_URL}/reply/${messageData.id}`,
+                method: "POST",
+                data: messageData
+            }),
+            invalidatesTags: [tagtypes.message],
+        }),
         getAllMessages: build.query({
             query: () => ({
                 url: `${MESSAGE_URL}/read`,
@@ -25,5 +33,6 @@ const messageApi = baseApi.injectEndpoints({
 
 export const {
     useSendMessageMutation,
+    useReplyMessageMutation,
     useGetAllMessagesQuery,
 } = messageApi;

@@ -13,6 +13,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'ghchart.rshah.org',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'res.cloudinary.com',
         port: '',
         pathname: '/**',

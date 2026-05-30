@@ -68,8 +68,8 @@ const Navbar = () => {
     const baseItems: NavItem[] = [
       { name: "Home", icon: <Home size={18} />, href: "/" },
       { name: "About", icon: <User size={18} />, href: "/about" },
-      { name: "Services", icon: <Briefcase size={18} />, href: "/services" },
-      { name: "Projects", icon: <Code size={18} />, href: "/projects" },
+      { name: "Services", icon: <Briefcase size={18} />, href: "/" },
+      { name: "Projects", icon: <Code size={18} />, href: "/" },
       { name: "Contact", icon: <Mail size={18} />, href: "mailto:rasel.byte64@gmail.com" },
     ];
     if (profile) {

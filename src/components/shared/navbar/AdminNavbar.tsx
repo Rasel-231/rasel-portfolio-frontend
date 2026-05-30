@@ -37,7 +37,7 @@ const AdminNavbar = () => {
   const navLinks: NavLink[] = [
     { href: "/", text: "Home" },
     { href: "#", text: "Articles" },
-    { href: "#", text: "Tutorials" },
+    { href: "/dashboard/sms", text: "Message" },
     { href: "#", text: "Reviews" },
     { href: "#", text: "About" },
   ]

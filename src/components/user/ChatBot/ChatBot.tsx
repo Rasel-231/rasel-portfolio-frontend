@@ -16,7 +16,7 @@ const ChatBot = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [chatWithAi, { isLoading }] = useChatWithAiMutation();
 
-  // অটো-স্ক্রল ইফেক্ট
+ 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
